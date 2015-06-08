@@ -10,4 +10,4 @@ This player can:
  - close playlist and load new
  - pause song
  - rate song
-The player can filter all songs with low rate in your playlist.
+ - The player can filter all songs with low rate in your playlist.
