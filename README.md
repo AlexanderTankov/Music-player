@@ -5,7 +5,6 @@ This player can:
  - play any songs 
  - create, save or load playlists to/in your computer.
  - next song
- - previous song
  - chose number of any song in playlis
  - close playlist and load new
  - pause song

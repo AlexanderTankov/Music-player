@@ -104,6 +104,7 @@ class TestPlaylist(unittest.TestCase):
         self.test_playlist.add_song(self.test_new_song)
         self.test_playlist.save("json_playlist.json")
 
+#TODO stringIO
     def test_load(self):
         pass
 

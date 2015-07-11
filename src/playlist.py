@@ -31,16 +31,9 @@ class Playlist():
         self.songs.append(song)
 
     def remove_song(self, song_name):
-        flag = False
-        while not flag:
-            n = 0
-            for song in self.songs:
-                if song.title == song_name:
-                    n += 1
-                    self.songs.remove(song)
-                    break
-            if n == 0:
-                flag = True
+        for song in self.songs:
+            if song.title == song_name:
+                self.songs.remove(song)
 
     def total_length(self):
         result = 0
@@ -49,29 +42,16 @@ class Playlist():
         return result
 
     def remove_disrated(self, rating):
-        flag = False
-        while not flag:
-            n = 0
-            for song in self.songs:
-                if song.rating <= rating:
-                    n += 1
-                    self.songs.remove(song)
-                    break
-            if n == 0:
-                flag = True
+        for song in self.songs:
+            if song.rating <= rating:
+                self.songs.remove(song)
 
     def remove_bad_quality(self):
-        flag = False
-        while not flag:
-            n = 0
-            for song in self.songs:
-                if song.bitrate < 200:
-                    n += 1
-                    self.songs.remove(song)
-                    break
-            if n == 0:
-                flag = True
+        for song in self.songs:
+            if song.bitrate < 200:
+                self.songs.remove(song)
 
+#TODO set
     def show_artists(self):
         result = []
         for song in self.songs:
@@ -89,14 +69,18 @@ class Playlist():
             song_min = song.length // 60
             song_sec = song.length - song_min * 60
             if song_min < 10 and song_sec > 10:
-                result += "{} {} - 0{}:{}'\n'".format(song.artist, song.title, song_min, song_sec)
+                result += "{} {} - 0{}:{}'\n'".format(song.artist,
+                                                      song.title,
+                                                      song_min,
+                                                      song_sec
+                                                      )
             elif song_min > 10 and song_sec < 10:
                 result += "{} {} - {}:0{}'\n'".format(song.artist, song.title, song_min, song_sec)
             elif song_min < 10 and song_sec < 10:
                 result += "{} {} - 0{}:0{}'\n'".format(song.artist, song.title, song_min, song_sec)
             else:
                 result += "{} {} - {}:{}'\n'".format(song.artist, song.title, song_min, song_sec)
-        result = result[:len(result) - 3]
+        result = result[:len(result)]
         return result
 
     def save(self, file_name):
