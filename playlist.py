@@ -102,9 +102,6 @@ class Playlist():
     def save(self, file_name):
         song_arr = []
         for song in self.songs:
-            #"title": song.title, "artist": song.artist,
-                #"album": song.album, "rating": song.rating, "length": song.length,
-                #"bitrate": song.bitrate
             temp_song = song.__dict__
             song_arr.append(temp_song)
         new_playlist = {"name": self.name, "songs": song_arr}

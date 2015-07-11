@@ -17,7 +17,13 @@ class MusicCrawler():
         music_files = [f for f in os.listdir(self.path) if f.endswith('.mp3') or f.endswith('.MP3')]
         for song in music_files:
             audio = MP3(self.path + "/" + song)
-            my_new_song = Song(audio["TIT2"], audio["TPE1"], audio["TALB"], 0, int(audio.info.length), audio.info.bitrate)
+            my_new_song = Song(audio["TIT2"],
+                               audio["TPE1"],
+                               audio["TALB"],
+                               0,
+                               int(audio.info.length),
+                               audio.info.bitrate
+                               )
             result.add_song(my_new_song)
         return result
 
@@ -50,7 +56,6 @@ def stop():
     pygame.mixer.music.stop()
 
 def startProgramNoRepeat():
-    print("startProgramNoRepeat")
     global NUM
     NUM += 1
     crawler = MusicCrawler("/home/alexandar/Documents/Programming-101/Week2/Music Library")
@@ -59,9 +64,6 @@ def startProgramNoRepeat():
     for elem in playlist.songs:
         songs_arr.append("{} - {}.mp3".format(elem.artist, elem.title))
 
-    print("Playlist:")
-    for idx, elem in enumerate(songs_arr):
-        print("[{}] {}".format(idx + 1, elem))
     if NUM > len(songs_arr):
         NUM = len(songs_arr)
     start_playlist(songs_arr, NUM)
