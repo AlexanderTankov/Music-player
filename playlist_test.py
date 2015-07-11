@@ -91,7 +91,6 @@ class TestPlaylist(unittest.TestCase):
         self.test_playlist.add_song(self.test_new_song)
         self.assertEqual(str(self.test_playlist), "ACDC Hells Bells - 05:09'\n'Guns'n'Roses November rain - 04:00")
 
-#For TDD
     def test_save(self):
         self.test_new_song = Song(
             "November rain",
@@ -105,7 +104,6 @@ class TestPlaylist(unittest.TestCase):
         self.test_playlist.add_song(self.test_new_song)
         self.test_playlist.save("json_playlist.json")
 
-#For TDD
     def test_load(self):
         pass
 

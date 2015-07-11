@@ -4,6 +4,25 @@ from song import Song
 
 class Playlist():
 
+    @staticmethod
+    def load(file_name):
+        my_file = open(file_name, 'r')
+        my_playlist = json.load(my_file)
+        my_file.close()
+        result = Playlist(my_playlist["name"])
+        song_arr = my_playlist["songs"]
+        for song in song_arr:
+            temp_song = Song(
+                song["title"],
+                song["artist"],
+                song["album"],
+                song["rating"],
+                song["length"],
+                song["bitrate"]
+            )
+            result.songs.append(temp_song)
+        return result
+
     def __init__(self, name):
         self.name = name
         self.songs = []
@@ -79,3 +98,18 @@ class Playlist():
                 result += "{} {} - {}:{}'\n'".format(song.artist, song.title, song_min, song_sec)
         result = result[:len(result) - 3]
         return result
+
+    def save(self, file_name):
+        song_arr = []
+        for song in self.songs:
+            #"title": song.title, "artist": song.artist,
+                #"album": song.album, "rating": song.rating, "length": song.length,
+                #"bitrate": song.bitrate
+            temp_song = song.__dict__
+            song_arr.append(temp_song)
+        new_playlist = {"name": self.name, "songs": song_arr}
+        new_playlist = json.dumps(new_playlist)
+
+        big_file = open(file_name, 'w')
+        big_file.write("".join(new_playlist))
+        big_file.close()
