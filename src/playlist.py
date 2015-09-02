@@ -51,7 +51,6 @@ class Playlist():
             if song.bitrate < 200:
                 self.songs.remove(song)
 
-#TODO set
     def show_artists(self):
         result = []
         for song in self.songs:
@@ -75,11 +74,23 @@ class Playlist():
                                                       song_sec
                                                       )
             elif song_min > 10 and song_sec < 10:
-                result += "{} {} - {}:0{}'\n'".format(song.artist, song.title, song_min, song_sec)
+                result += "{} {} - {}:0{}'\n'".format(song.artist,
+                                                      song.title,
+                                                      song_min,
+                                                      song_sec
+                                                      )
             elif song_min < 10 and song_sec < 10:
-                result += "{} {} - 0{}:0{}'\n'".format(song.artist, song.title, song_min, song_sec)
+                result += "{} {} - 0{}:0{}'\n'".format(song.artist,
+                                                       song.title,
+                                                       song_min,
+                                                       song_sec
+                                                       )
             else:
-                result += "{} {} - {}:{}'\n'".format(song.artist, song.title, song_min, song_sec)
+                result += "{} {} - {}:{}'\n'".format(song.artist,
+                                                     song.title,
+                                                     song_min,
+                                                     song_sec
+                                                     )
         result = result[:len(result)]
         return result
 

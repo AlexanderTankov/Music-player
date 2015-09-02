@@ -5,6 +5,7 @@ from playlist import Playlist
 
 import os
 NUM = 0
+PATH_TO_MUSIC_LIB = "/home/alexandar/Documents/Programming-101/Week2/Music Library"
 
 
 class MusicCrawler():
@@ -28,24 +29,6 @@ class MusicCrawler():
         return result
 
 
-def start_song_with_num(array_of_songs, num):
-    if num <= len(array_of_songs):
-        pygame.mixer.init()
-        pygame.mixer.music.load(array_of_songs[num - 1])
-        pygame.mixer.music.play()
-        while pygame.mixer.music.get_busy():
-            temp_imput = input()
-            if temp_imput.lower() == "stop":
-                pygame.mixer.music.stop()
-                return True
-            elif temp_imput.lower() == "exit":
-                pygame.mixer.music.stop()
-                return False
-    else:
-        print("Dont have song with that number")
-        return True
-
-
 def start_playlist(array_of_songs, num):
     pygame.mixer.init()
     pygame.mixer.music.load(array_of_songs[num - 1])
@@ -55,10 +38,11 @@ def start_playlist(array_of_songs, num):
 def stop():
     pygame.mixer.music.stop()
 
+
 def startProgramNoRepeat():
     global NUM
     NUM += 1
-    crawler = MusicCrawler("/home/alexandar/Documents/Programming-101/Week2/Music Library")
+    crawler = MusicCrawler(PATH_TO_MUSIC_LIB)
     playlist = crawler.generate_playlist()
     songs_arr = []
     for elem in playlist.songs:
@@ -73,7 +57,7 @@ def startProgram():
     print("startProgram")
     global NUM
     NUM += 1
-    crawler = MusicCrawler("/home/alexandar/Documents/Programming-101/Week2/Music Library")
+    crawler = MusicCrawler(PATH_TO_MUSIC_LIB)
     playlist = crawler.generate_playlist()
     songs_arr = []
     for elem in playlist.songs:
